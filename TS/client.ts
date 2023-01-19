@@ -21,16 +21,15 @@ const camera_ort = new THREE.OrthographicCamera(-1*aspectu,1*aspectu,1,-1, 1, 10
 
 const camera = camera_pers
 
-camera.position.z = 1
-camera.position.y = 2
-camera.position.x = 1   
-camera.lookAt(0,0,0)
+camera.position.z = 4
+camera.position.y = 3
+camera.position.x = 4   
 
 const renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
-new OrbitControls(camera, renderer.domElement)
+var controls = new OrbitControls(camera, renderer.domElement)
 
 
 // AÑADIR ESFERA
@@ -42,9 +41,10 @@ const material_sphere_1 = new THREE.MeshBasicMaterial({
 })
 const sphere_1 = new THREE.Mesh(geometry_sphere_1, material_sphere_1)
 sphere_1.position.y=0.05
+sphere_1.position.x=2
+sphere_1.position.z=2
 
-sphere_1.position.x=0.5
-sphere_1.position.z=0.5
+camera.lookAt(new Vector3(sphere_1.position.x,sphere_1.position.y,sphere_1.position.z))
 
 scene.add(sphere_1)
 sphere_1.add(new THREE.AxesHelper(1))
@@ -333,11 +333,11 @@ function animate() {
     plane_0.position.x=centerHex(sphere_1.position.x,sphere_1.position.z)[0]
     plane_0.position.z=centerHex(sphere_1.position.x,sphere_1.position.z)[1]
 
+    
+controls.target = new Vector3(sphere_1.position.x,sphere_1.position.y,sphere_1.position.z)
     render()
 }
-
 function render() {
     renderer.render(scene, camera)
 }
-
 animate()
