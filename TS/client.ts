@@ -1,8 +1,8 @@
 import * as THREE from 'three'
 import { AlphaFormat, Color, DoubleSide, Matrix, Plane, PositionalAudio, Sphere, Vector2, Vector3 } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
-import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader'
+// import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
+// import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader'
 
 const scene = new THREE.Scene()
 scene.add(new THREE.AxesHelper(5))
@@ -54,7 +54,7 @@ sphere_1.position.z=2
 
 camera.lookAt(new Vector3(sphere_1.position.x,sphere_1.position.y,sphere_1.position.z))
 
-// scene.add(sphere_1)
+scene.add(sphere_1)
 sphere_1.add(new THREE.AxesHelper(1))
 
 //PLANOS
@@ -287,42 +287,42 @@ function planosCercanos (){
 
 //LOADER OBJ
 
-const material_cat_1 = new THREE.MeshNormalMaterial({
-})
+// const material_cat_1 = new THREE.MeshNormalMaterial({
+// })
 
-const mtlLoader = new MTLLoader()
-mtlLoader.load(
-    'models/robot_cat_sketchfab.mtl',
-    (materials) => {
-        materials.preload()
-        console.log(materials)
-        const objLoader = new OBJLoader()
-        objLoader.setMaterials(materials)
-objLoader.load(
-    'models/robot_cat_sketchfab.obj',
-    (cat_1) => {
-        let matr = new THREE.Matrix4()
-        cat_1.applyMatrix4(matr.makeScale(0.01,0.01,0.01))
-        cat_1.position.x=sphere_1.position.x
-        cat_1.position.y=sphere_1.position.y
-        cat_1.position.z=sphere_1.position.z
-        scene.add(cat_1)
-    },
-    (xhr) => {
-        console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
-    },
-    (error) => {
-        console.log(error)
-    }
-)
-    },
-    (xhr) => {
-        console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
-    },
-    (error) => {
-        console.log('An error happened')
-    }
-)
+// const mtlLoader = new MTLLoader()
+// mtlLoader.load(
+//     'models/robot_cat_sketchfab.mtl',
+//     (materials) => {
+//         materials.preload()
+//         console.log(materials)
+//         const objLoader = new OBJLoader()
+//         objLoader.setMaterials(materials)
+// objLoader.load(
+//     'models/robot_cat_sketchfab.obj',
+//     (cat_1) => {
+//         let matr = new THREE.Matrix4()
+//         cat_1.applyMatrix4(matr.makeScale(0.01,0.01,0.01))
+//         cat_1.position.x=sphere_1.position.x
+//         cat_1.position.y=sphere_1.position.y
+//         cat_1.position.z=sphere_1.position.z
+//         scene.add(cat_1)
+//     },
+//     (xhr) => {
+//         console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+//     },
+//     (error) => {
+//         console.log(error)
+//     }
+// )
+//     },
+//     (xhr) => {
+//         console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+//     },
+//     (error) => {
+//         console.log('An error happened')
+//     }
+// )
 
 
 
